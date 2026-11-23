@@ -1,58 +1,208 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ClientFlow
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[Lire en français](README.fr.md)
 
-## About Laravel
+ClientFlow is a bilingual client, project, task, invoice, and payment management application for freelancers, agencies, and service businesses. It was built as a production-oriented Laravel portfolio project with secure role-based access, realistic Moroccan business data, responsive workflows, and database-backed reporting.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![ClientFlow dashboard](docs/screenshots/dashboard.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Purpose
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+ClientFlow brings commercial and delivery operations into one focused workspace. Administrators can manage the full business lifecycle, while employees receive restricted access to assigned work. French is the default language, English is available from the interface, and financial values use Moroccan dirhams (MAD).
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Secure registration, login, logout, password reset, session regeneration, CSRF protection, and rate limiting.
+- `ADMIN` and `EMPLOYEE` roles enforced by backend middleware and authorization checks.
+- Database-backed dashboard with client, project, task, invoicing, payment, outstanding-balance, monthly-revenue, and project-status statistics.
+- Searchable client directory with complete create, read, update, and delete workflows.
+- Project budgets, deadlines, progress, statuses, client relationships, and employee assignments.
+- Assigned tasks with priorities, deadlines, completion tracking, and employee-specific access.
+- Invoices linked to clients and projects with multiple line items, tax calculation, MAD totals, statuses, and downloadable PDF files.
+- Transaction-safe payment recording, payment history, automatic invoice status updates, and overpayment prevention.
+- Administrator-managed employee accounts, roles, and account activation.
+- French and English localization across authentication, navigation, dashboard, and management screens.
+- Responsive Tailwind CSS and Alpine.js interface with mobile navigation, filters, pagination, validation feedback, empty states, and notifications.
+- Realistic seeded Moroccan clients, businesses, projects, tasks, invoices, and payments.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Screenshots
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Authentication
 
-## Agentic Development
+![ClientFlow login](docs/screenshots/login.png)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Clients
+
+![Client management](docs/screenshots/clients.png)
+
+### Projects
+
+![Project management](docs/screenshots/projects.png)
+
+### Tasks
+
+![Task management](docs/screenshots/tasks.png)
+
+### Invoices
+
+![Invoice management](docs/screenshots/invoices.png)
+
+### Payments
+
+![Payment management](docs/screenshots/payments.png)
+
+### Mobile
+
+![ClientFlow mobile dashboard](docs/screenshots/mobile.png)
+
+## Technology
+
+- PHP 8.3+ and Laravel 13
+- Eloquent ORM with MySQL support and SQLite for convenient local development
+- Blade templates, Tailwind CSS 4, Alpine.js, and Vite 8
+- DOMPDF for downloadable invoices
+- PHPUnit 12 for feature and domain tests
+- Playwright with Chromium for end-to-end browser testing and screenshots
+- Composer, npm, and Git
+
+## Requirements
+
+- PHP 8.3 or later with `pdo_mysql` or `pdo_sqlite`, `mbstring`, `openssl`, `fileinfo`, `dom`, and `zip`
+- Composer 2
+- Node.js 20.19+ and npm
+- MySQL 8+ for a production-style environment, or SQLite for local development
+
+## Installation
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/yasser-dev-code/ClientFlow.git
+cd ClientFlow
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+On Windows PowerShell, copy the environment file with:
 
-## Contributing
+```powershell
+Copy-Item .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### SQLite setup
 
-## Code of Conduct
+Keep `DB_CONNECTION=sqlite` in `.env`, then create the local database:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```powershell
+New-Item -ItemType File database/database.sqlite -Force
+```
 
-## Security Vulnerabilities
+On macOS or Linux:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+touch database/database.sqlite
+```
+
+### MySQL setup
+
+Create an empty database, then configure `.env` without committing credentials:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=clientflow
+DB_USERNAME=your_local_user
+DB_PASSWORD=your_local_password
+```
+
+Run migrations and seed the development dataset:
+
+```bash
+php artisan migrate --seed
+npm run build
+```
+
+Start the application:
+
+```bash
+composer run dev
+```
+
+Alternatively, use `php artisan serve` and `npm run dev` in separate terminals.
+
+## Development demo credentials
+
+These accounts are created only by the development seeder and must never be reused in production.
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Administrator | `admin@clientflow.ma` | `ClientFlow2026!` |
+| Employee | `salma@clientflow.ma` | `ClientFlow2026!` |
+
+## Testing
+
+Reset and seed the local database before browser tests:
+
+```bash
+php artisan migrate:fresh --seed
+php artisan test --compact
+npm run test:browser
+npm run build
+composer audit
+npm audit
+```
+
+The Playwright configuration starts the Laravel development server automatically and uses its bundled Chromium. Browser tests cover authentication, core management areas, employee management, language switching, and mobile navigation.
+
+## Project structure
+
+```text
+app/
+  Http/Controllers/       Authentication and resource workflows
+  Http/Middleware/        Active-account, administrator, and locale boundaries
+  Http/Requests/          Validation and authorization rules
+  Models/                 Eloquent domain models and relationships
+database/
+  factories/              Test data factories
+  migrations/             Relational schema, constraints, and indexes
+  seeders/                Moroccan development dataset
+lang/en, lang/fr/         English and French translations
+resources/
+  css, js/                Tailwind and Alpine entry points
+  views/                  Blade layouts and feature screens
+tests/
+  Feature/                PHPUnit application tests
+  Browser/                Playwright end-to-end tests
+docs/screenshots/         Real application screenshots
+```
+
+## Security
+
+- Passwords are hashed through Laravel's password cast.
+- State-changing forms use CSRF protection.
+- Authentication endpoints are rate-limited.
+- Role and active-account restrictions are enforced on the server.
+- Form Requests validate accepted input and models restrict mass assignment.
+- Blade escapes user-provided content by default.
+- Eloquent parameter binding protects database queries.
+- Payment creation uses a database transaction and row lock to prevent concurrent overpayment.
+- `.env`, local databases, dependencies, logs, caches, browser reports, and private credentials are excluded from Git.
+
+Production deployments should set `APP_ENV=production`, disable debug mode, use unique credentials and secrets, configure a real mail transport, enforce HTTPS, and run queues under a process manager.
+
+## Future improvements
+
+- Email delivery and invoice reminders
+- Client-facing portal and file attachments
+- Recurring invoices and configurable taxes
+- REST API and webhook integrations
+- Expanded reporting exports and audit history
+
+## Author
+
+Created by [yasser-dev-code](https://github.com/yasser-dev-code) as a full-stack portfolio project.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is available under the [MIT License](https://opensource.org/licenses/MIT).
