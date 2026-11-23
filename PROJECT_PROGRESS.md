@@ -16,6 +16,7 @@ Last updated: 2026-11-23
 - Phase 10: Playwright Chromium testing and eight real seeded screenshots.
 - Phase 11: complete recruiter-facing English and French README files.
 - Phase 12 local verification: migrations, seeders, formatting, Composer validation, PHPUnit, Playwright, production build, dependency audits, secret scan, and Git review.
+- Phase 13: environment-backed demo credentials, local/testing-only demo seeding, secure browser-test credential loading, and local credential rotation.
 
 ## Environment
 
@@ -31,7 +32,7 @@ Last updated: 2026-11-23
 
 - `composer validate --strict`: passed.
 - `vendor/bin/pint --dirty --format agent`: passed.
-- `php artisan test --compact`: 21 tests passed, 76 assertions.
+- `php artisan test --compact`: 24 tests passed, 80 assertions.
 - `npm run test:browser`: 4 scenarios passed.
 - Browser coverage: login/logout, dashboard, clients, projects, tasks, invoices, payments, employee management, French/English switching, and mobile navigation.
 - `npm run build`: passed.
@@ -39,6 +40,7 @@ Last updated: 2026-11-23
 - `npm audit --audit-level=high`: 0 vulnerabilities.
 - README screenshot path check: all eight images exist and are referenced in both README files.
 - Secret review: `.env`, local databases, application keys, tokens, and private credentials are not tracked.
+- Demo credential review: no hardcoded demo password remains; `DEMO_ADMIN_PASSWORD` is blank in `.env.example` and configured only in the ignored local `.env`.
 
 ## Screenshots
 
@@ -53,20 +55,19 @@ Last updated: 2026-11-23
 
 ## Latest Git commits
 
+- `072a27d docs: add screenshots and bilingual documentation`
 - `fce23e9 feat: complete application workflows and interface`
 - `6cb5f02 feat: add core domain models and seed data`
-- The screenshots and bilingual documentation are verified locally and awaiting their documentation commit.
 
 ## GitHub push status
 
 - Remote configured as `https://github.com/yasser-dev-code/ClientFlow.git`.
-- GitHub CLI authentication is currently invalid.
-- Repository existence/public visibility cannot be verified until authentication is restored.
+- GitHub CLI authentication must be verified before the security commit can be pushed.
+- Repository existence/public visibility will be verified before pushing.
 - No force-push or remote history rewrite has been attempted.
 
 ## Exact next steps
 
-1. Authenticate with `gh auth login -h github.com -p https -w`.
-2. Verify or create the public `yasser-dev-code/ClientFlow` repository.
-3. Stage the reviewed project files, create the final application commit, and push `main`.
-4. Confirm public accessibility and README image rendering on GitHub.
+1. Create and review the demo-credential security commit.
+2. Authenticate with GitHub CLI if required.
+3. Verify the public `yasser-dev-code/ClientFlow` repository and push `main` without rewriting history.

@@ -1,4 +1,7 @@
 import { defineConfig } from '@playwright/test';
+import { loadEnvFile } from 'node:process';
+
+loadEnvFile();
 
 export default defineConfig({
     testDir: './tests/Browser',

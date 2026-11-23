@@ -89,6 +89,14 @@ On Windows PowerShell, copy the environment file with:
 Copy-Item .env.example .env
 ```
 
+Generate a unique password of at least 20 characters with a password manager, then store it only in your local `.env` file:
+
+```dotenv
+DEMO_ADMIN_PASSWORD=
+```
+
+Fill this entry locally before seeding. Do not commit, log, or include its value in screenshots. The demo seeder fails safely when the variable is empty and runs only when `APP_ENV` is `local` or `testing`.
+
 ### SQLite setup
 
 Keep `DB_CONNECTION=sqlite` in `.env`, then create the local database:
@@ -133,12 +141,12 @@ Alternatively, use `php artisan serve` and `npm run dev` in separate terminals.
 
 ## Development demo credentials
 
-These accounts are created only by the development seeder and must never be reused in production.
+These accounts are created only in local or testing environments. They share the locally configured `DEMO_ADMIN_PASSWORD`; never reuse that password elsewhere or in production.
 
 | Role | Email | Password |
 | --- | --- | --- |
-| Administrator | `admin@clientflow.ma` | `ClientFlow2026!` |
-| Employee | `salma@clientflow.ma` | `ClientFlow2026!` |
+| Administrator | `admin@clientflow.ma` | Local `DEMO_ADMIN_PASSWORD` value |
+| Employee | `salma@clientflow.ma` | Local `DEMO_ADMIN_PASSWORD` value |
 
 ## Testing
 
@@ -180,6 +188,7 @@ docs/screenshots/         Real application screenshots
 ## Security
 
 - Passwords are hashed through Laravel's password cast.
+- Demo passwords are read from the untracked local environment and demo data is blocked outside local and testing environments.
 - State-changing forms use CSRF protection.
 - Authentication endpoints are rate-limited.
 - Role and active-account restrictions are enforced on the server.

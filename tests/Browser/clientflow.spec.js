@@ -3,11 +3,16 @@ import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
 const screenshotDirectory = path.join(process.cwd(), 'docs', 'screenshots');
+const demoAdminPassword = process.env.DEMO_ADMIN_PASSWORD;
+
+if (!demoAdminPassword) {
+    throw new Error('DEMO_ADMIN_PASSWORD must be configured before running browser tests.');
+}
 
 async function login(page) {
     await page.goto('/login');
     await page.getByLabel('Adresse e-mail').fill('admin@clientflow.ma');
-    await page.getByLabel('Mot de passe', { exact: true }).fill('ClientFlow2026!');
+    await page.getByLabel('Mot de passe', { exact: true }).fill(demoAdminPassword);
     await page.getByRole('button', { name: 'Se connecter' }).click();
     await expect(page).toHaveURL(/\/dashboard$/);
     await expect(page.getByRole('heading', { name: 'Vue d’ensemble' })).toBeVisible();

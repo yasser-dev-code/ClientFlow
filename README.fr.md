@@ -89,6 +89,14 @@ Sous Windows PowerShell :
 Copy-Item .env.example .env
 ```
 
+Générer un mot de passe unique d'au moins 20 caractères avec un gestionnaire de mots de passe, puis le conserver uniquement dans le fichier `.env` local :
+
+```dotenv
+DEMO_ADMIN_PASSWORD=
+```
+
+Renseigner cette entrée localement avant d'exécuter les seeders. Ne jamais versionner, journaliser ou afficher sa valeur dans une capture d'écran. Le seeder de démonstration échoue de façon sûre si la variable est vide et ne s'exécute que lorsque `APP_ENV` vaut `local` ou `testing`.
+
 ### Configuration SQLite
 
 Conserver `DB_CONNECTION=sqlite` dans `.env`, puis créer la base locale :
@@ -133,12 +141,12 @@ Il est également possible d'utiliser `php artisan serve` et `npm run dev` dans 
 
 ## Identifiants de démonstration
 
-Ces comptes sont créés uniquement par le seeder de développement et ne doivent jamais être réutilisés en production.
+Ces comptes sont créés uniquement dans les environnements local ou de test. Ils partagent le `DEMO_ADMIN_PASSWORD` configuré localement ; ne jamais réutiliser ce mot de passe ailleurs ni en production.
 
 | Rôle | E-mail | Mot de passe |
 | --- | --- | --- |
-| Administrateur | `admin@clientflow.ma` | `ClientFlow2026!` |
-| Employé | `salma@clientflow.ma` | `ClientFlow2026!` |
+| Administrateur | `admin@clientflow.ma` | Valeur locale de `DEMO_ADMIN_PASSWORD` |
+| Employé | `salma@clientflow.ma` | Valeur locale de `DEMO_ADMIN_PASSWORD` |
 
 ## Tests
 
@@ -180,6 +188,7 @@ docs/screenshots/         Captures réelles de l'application
 ## Sécurité
 
 - Les mots de passe sont hachés par Laravel.
+- Les mots de passe de démonstration proviennent de l'environnement local non versionné et les données de démonstration sont bloquées hors des environnements local et de test.
 - Les formulaires de modification utilisent la protection CSRF.
 - Les routes d'authentification sont limitées en fréquence.
 - Les rôles et comptes actifs sont contrôlés côté serveur.

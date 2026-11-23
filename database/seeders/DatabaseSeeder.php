@@ -26,10 +26,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        if (! app()->environment(['local', 'testing'])) {
+            return;
+        }
+
+        $demoPassword = config('demo.admin_password');
+
+        if (! is_string($demoPassword) || $demoPassword === '') {
+            throw new \RuntimeException('DEMO_ADMIN_PASSWORD must be configured before seeding demo accounts.');
+        }
+
         $admin = User::factory()->admin()->create([
             'name' => 'Yassine El Mansouri',
             'email' => 'admin@clientflow.ma',
-            'password' => 'ClientFlow2026!',
+            'password' => $demoPassword,
         ]);
 
         $employees = collect([
@@ -38,7 +48,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Imane Berrada', 'email' => 'imane@clientflow.ma'],
         ])->map(fn (array $employee): User => User::factory()->create([
             ...$employee,
-            'password' => 'ClientFlow2026!',
+            'password' => $demoPassword,
         ]));
 
         $clients = collect([
