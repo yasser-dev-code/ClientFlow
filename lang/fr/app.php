@@ -1,0 +1,20 @@
+<?php
+
+return [
+    'nav' => ['dashboard' => 'Tableau de bord', 'clients' => 'Clients', 'projects' => 'Projets', 'tasks' => 'Tâches', 'invoices' => 'Factures', 'payments' => 'Paiements', 'users' => 'Équipe'],
+    'login' => 'Se connecter', 'register' => 'Créer un compte', 'logout' => 'Déconnexion', 'email' => 'Adresse e-mail', 'password' => 'Mot de passe', 'password_confirmation' => 'Confirmer le mot de passe', 'remember_me' => 'Se souvenir de moi',
+    'forgot_password' => 'Mot de passe oublié ?', 'send_reset_link' => 'Envoyer le lien', 'reset_password' => 'Réinitialiser le mot de passe', 'welcome_back' => 'Heureux de vous revoir', 'auth_subtitle' => 'Pilotez vos clients, projets et finances depuis un espace unique.',
+    'search' => 'Rechercher', 'filter' => 'Filtrer', 'all' => 'Tous', 'add' => 'Ajouter', 'edit' => 'Modifier', 'delete' => 'Supprimer', 'save' => 'Enregistrer', 'cancel' => 'Annuler', 'view' => 'Voir', 'actions' => 'Actions', 'details' => 'Détails', 'status_label' => 'Statut', 'no_results' => 'Aucun résultat à afficher.',
+    'saved' => 'Les modifications ont été enregistrées.', 'deleted' => 'L’élément a été supprimé.',
+    'clients' => 'Clients', 'client' => 'Client', 'projects' => 'Projets', 'project' => 'Projet', 'tasks' => 'Tâches', 'task' => 'Tâche', 'invoices' => 'Factures', 'invoice' => 'Facture', 'payments' => 'Paiements', 'payment' => 'Paiement', 'team' => 'Équipe',
+    'name' => 'Nom', 'company' => 'Entreprise', 'phone' => 'Téléphone', 'address' => 'Adresse', 'notes' => 'Notes', 'created_at' => 'Créé le', 'description' => 'Description', 'budget' => 'Budget', 'progress' => 'Progression', 'deadline' => 'Échéance', 'start_date' => 'Date de début', 'employees' => 'Collaborateurs', 'assignee' => 'Responsable', 'priority' => 'Priorité', 'due_date' => 'Date limite',
+    'number' => 'Numéro', 'issue_date' => 'Date d’émission', 'total' => 'Total', 'subtotal' => 'Sous-total', 'tax_rate' => 'TVA', 'balance' => 'Solde', 'amount' => 'Montant', 'paid_at' => 'Date de paiement', 'method' => 'Mode', 'reference' => 'Référence', 'download_pdf' => 'Télécharger le PDF', 'line_items' => 'Lignes de facture', 'quantity' => 'Quantité', 'unit_price' => 'Prix unitaire',
+    'role' => 'Rôle', 'active' => 'Actif', 'inactive' => 'Inactif', 'is_active' => 'Compte actif',
+    'dashboard' => ['title' => 'Vue d’ensemble', 'subtitle' => 'Voici la situation actuelle de votre activité.', 'total_clients' => 'Clients', 'active_projects' => 'Projets actifs', 'completed_projects' => 'Projets terminés', 'pending_tasks' => 'Tâches en attente', 'total_invoiced' => 'Total facturé', 'total_received' => 'Paiements reçus', 'outstanding' => 'Reste à encaisser', 'monthly_revenue' => 'Revenus mensuels', 'project_distribution' => 'Répartition des projets', 'recent_activity' => 'Activité récente', 'upcoming_tasks' => 'Prochaines tâches'],
+    'status' => ['planned' => 'Planifié', 'in_progress' => 'En cours', 'on_hold' => 'En pause', 'completed' => 'Terminé', 'cancelled' => 'Annulé', 'pending' => 'À faire', 'draft' => 'Brouillon', 'sent' => 'Envoyée', 'partially_paid' => 'Partiellement payée', 'paid' => 'Payée', 'overdue' => 'En retard'],
+    'priority_values' => ['low' => 'Basse', 'medium' => 'Moyenne', 'high' => 'Haute'],
+    'roles' => ['admin' => 'Administrateur', 'employee' => 'Employé'],
+    'methods' => ['bank_transfer' => 'Virement bancaire', 'cash' => 'Espèces', 'cheque' => 'Chèque', 'card' => 'Carte'],
+    'activity' => ['client_created' => 'Client :name ajouté', 'project_created' => 'Projet :name créé', 'task_created' => 'Tâche :name créée', 'invoice_created' => 'Facture :number créée', 'payment_recorded' => 'Paiement de :amount MAD enregistré'],
+    'payment_exceeds_balance' => 'Le paiement dépasse le solde restant de :amount MAD.', 'invoice_total_below_payments' => 'Le total de la facture ne peut pas être inférieur aux paiements déjà reçus.', 'cannot_deactivate_self' => 'Vous ne pouvez pas désactiver votre propre compte.', 'cannot_delete_self' => 'Vous ne pouvez pas supprimer votre propre compte.',
+];
